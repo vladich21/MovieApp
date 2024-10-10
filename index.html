@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Movie app</title>
+  </head>
+  <body>
+    <header class="container">
+      <div class="header__content">
+        <a href="index.html" class="header__logo">MovieApp</a>
+        <div class="header__links">
+          <a href="index.html" class="header__movie-link">Популярные фильмы</a>
+          <a id="popular-series" href="#" class="header__movie-link"
+            >Популярные сериалы</a
+          >
+        </div>
+        <form>
+          <input type="text" class="header__search" placeholder="Поиск" />
+        </form>
+      </div>
+    </header>
+    <main>
+      <article>
+        <div class="container">
+          <h1 id="page-title" class="title">Popular Movies</h1>
+          <div class="movies"></div>
+          <div class="modal"></div>
+          <div class="pagination">
+            <button id="prev" disabled>Previous</button>
+            <span id="page-info">Page 1</span>
+            <button id="next">Next</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footer">
+        <a href="index.html" class="header__logo">MovieApp</a>
+        <div class="footer__links">
+          <a href="index.html" class="footer__movie-link">Популярные фильмы</a>
+          <a id="popular-series" href="#" class="footer__movie-link"
+            >Популярные сериалы</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>
