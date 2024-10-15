@@ -1,8 +1,11 @@
 import { displayMovies } from './cardsMovie.js'; 
-import {getMovies} from "./index.js"
+import {MoviesApi} from "./MoviesApi.js"
+
+
+const moviesApi = new MoviesApi();
 
 let currentPage = 1;
-
+let totalPages = 13;
 function updatePageInfo() {
   const pageInfo = document.getElementById('page-info');
   pageInfo.textContent = `Page ${currentPage}`;
@@ -13,16 +16,27 @@ async function loadMovies() {
   if (savedPage) {
     currentPage = parseInt(savedPage, 10);
   }
+  const loader = document.querySelector('.loader');
+  loader.style.display = 'block'
 
-  const movies = await getMovies(currentPage);
-  if (movies) {
-    displayMovies(movies);
-    updatePageInfo();
+  try {
+    // Вызов метода getMovies через экземпляр moviesApi
+    const movies = await moviesApi.getMovies(currentPage); 
+    if (movies) {
+      loader.style.display = 'none';
+      displayMovies(movies);
+      updatePageInfo();
+      updateButtons();
+    }
+  } catch (error) {
+    loader.style.display = 'none';
+    console.error('Failed to load movies:', error);
   }
 }
 
 function updateButtons() {
   document.getElementById('prev').disabled = currentPage === 1;
+  document.getElementById('next').disabled = currentPage === totalPages;
 }
 
 function setupPagination() {
@@ -36,10 +50,12 @@ function setupPagination() {
   });
 
   document.getElementById('next').addEventListener('click', () => {
-    currentPage++;
-    localStorage.setItem('currentPage', currentPage);
-    loadMovies();
-    updateButtons();
+    if(currentPage < totalPages){
+      currentPage++;
+      localStorage.setItem('currentPage', currentPage);
+      loadMovies();
+      updateButtons();
+    }
   });
 }
 

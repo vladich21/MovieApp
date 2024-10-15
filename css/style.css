@@ -15,6 +15,20 @@ body {
 	margin: 0 auto;
 }
 
+.loader {
+	width: 70px;
+	height: 70px;
+	border: 6px solid rgba(255, 85, 0, 0.6);
+	border-radius: 50%;
+	border-left-color: #f50;
+	animation: loader 1.3s linear infinite;
+}
+
+@keyframes loader {
+	100% {
+		transform: rotate(360deg);
+	}
+}
 
 .header__content {
 	display: flex;
@@ -35,6 +49,15 @@ body {
 	border: 2px solid #1a191f;
 	background-repeat: 5px;
 	outline: none;
+}
+
+.down-line {
+	border: 1px solid #fff;
+	margin: 10px -20px 10px -20px;
+}
+
+.title {
+	color: #fff;
 }
 
 .movies {
@@ -267,7 +290,7 @@ ul li {
 	justify-content: center;
 }
 
-.slider__btn {
+.modal__btn {
 	height: 40px;
 	margin: 20px;
 	padding: 15px;
@@ -323,15 +346,16 @@ ul li {
 	cursor: pointer;
 	border-radius: 5px;
 	font-size: 16px;
+	font-weight: bold;
 }
 
 .pagination button:hover {
 	background-color: #0056b3;
 }
 
-.pagination button.active {
-	background-color: #0056b3;
-	font-weight: bold;
+.pagination button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
 }
 
 #page-info {

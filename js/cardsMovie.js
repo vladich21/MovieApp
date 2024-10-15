@@ -1,9 +1,12 @@
 import { getClassByRate, getFormattedRating } from "./helpers.js";
 import { openModal } from "./modal.js";
+import { createObservable } from "./createObservable.js";
 
 export function createMovieElement(movie) {
   const movieEl = document.createElement("div");
   movieEl.classList.add("movie");
+
+  movieEl.setAttribute("data-id", movie.kinopoiskId);
 
   const rating = movie.rating || movie.ratingImdb;
   movieEl.innerHTML = `
@@ -18,8 +21,6 @@ export function createMovieElement(movie) {
         ${getFormattedRating(rating)}
       </div>
   </div>`;
-
-  movieEl.addEventListener("click", () => openModal(movie.kinopoiskId));
   return movieEl;
 }
 
@@ -32,3 +33,17 @@ export function displayMovies(data) {
     moviesEl.appendChild(movieEl);
   });
 }
+
+// Обработчик кликов по фильмам с использованием делегирования
+document.querySelector(".movies").addEventListener("click", (event) => {
+  const movieEl = event.target.closest(".movie");
+
+  if (movieEl) {
+    const movieId = movieEl.getAttribute("data-id");
+    openModal(movieId); 
+  }
+});
+
+console.log( 1 == 12);
+console.log( 1 === 12);
+

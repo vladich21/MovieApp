@@ -1,6 +1,6 @@
 import{API_KEY, API_URL_POPULAR, API_URL_SEARCH, API_URL_MOVIE_DETAILS, API_URL_MOVIE_STILL, API_URL_TOP_250_TV_SHOWS} from "./api.js"
 
-const modalEl = document.querySelector(".modal");
+const modalEl = document.getElementById("modal");
 
 async function openModal(id) {
     const response = await fetch(API_URL_MOVIE_DETAILS + id, {
@@ -41,17 +41,18 @@ async function openModal(id) {
                 <li class="modal__movie-country"><b>Страна:</b> ${responseData.countries.map((el) => `<span>${el.country}</span>`).join(', ')}</li>
             </ul>
             <div class="modal__slider">
-                <button class="slider__btn slider__btn-prev">❮</button>
+                <button class="modal__btn slider__btn-prev">❮</button>
                 <div class="slider__container"> Кадры из фильма
                     ${createSliderImages(secondResponseData.items)}
                 </div>
-                <button class="slider__btn slider__btn-next">❯</button>
+                <button class="modal__btn slider__btn-next">❯</button>
             </div>
         </div>
     `;
     
     document.body.classList.add("stop-scrolling");
     modalEl.classList.add("modal--show");
+   
 
     const btnClose = document.querySelector(".modal__button-close");
     btnClose.addEventListener("click", () => closeModal());
@@ -102,4 +103,4 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
-export { openModal };
+export{ openModal };

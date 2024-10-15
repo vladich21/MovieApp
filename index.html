@@ -23,16 +23,18 @@
           >
         </div>
         <form>
-          <input type="text" class="header__search" placeholder="Поиск" />
+          <input type="text" class="header__search" placeholder="Поиск..." />
         </form>
       </div>
+      <div class="down-line"></div>
     </header>
     <main>
       <article>
         <div class="container">
           <h1 id="page-title" class="title">Popular Movies</h1>
           <div class="movies"></div>
-          <div class="modal"></div>
+          <div class="loader"></div>
+          <div id="modal" class="modal"></div>
           <div class="pagination">
             <button id="prev" disabled>Previous</button>
             <span id="page-info">Page 1</span>
